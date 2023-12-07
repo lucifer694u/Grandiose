@@ -8,6 +8,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import { selectItems } from "@/slices/basketSlice";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 import Link from "next/link";
 
@@ -19,6 +20,7 @@ import { useSelector } from "react-redux";
 function Header() {
   const [toggle, setToggle] = useState(false);
   const items = useSelector(selectItems);
+  const router = useRouter();
 
   return (
     <div className=" flex  sm:flex-row py-3 max-w-screen sticky top-0    md:px-[2%] px-[8%] bg-white font-bold  z-10  tracking-[2px]">
@@ -65,6 +67,7 @@ function Header() {
         <Link href="/">
           <div className="text-center">
             <Image
+              onClick={() => router.push("/")}
               src={king}
               width={140}
               height={100}
@@ -109,14 +112,11 @@ function Header() {
             <a className="pr-4 " href="/favourite">
               <BookmarkBorderOutlinedIcon />
             </a>
-            <a className="px-4" href="/cart">
-              <ShoppingBagOutlinedIcon />
-            </a>
-            <a className="px-8 " href="">
+            <a className="px-4" onClick={() => router.push("/cart")}>
               <span className="absolute top-0 ri md:right-10 h-4 w-4 bg-yellow-400 text-center rounded-full">
                 {items.length}
               </span>
-              <ShoppingCartOutlinedIcon />
+              <ShoppingBagOutlinedIcon />
             </a>
           </div>
           <a href="">

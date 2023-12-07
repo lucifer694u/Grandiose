@@ -10,15 +10,15 @@ import { addToCart } from "../_app";
 import { useDispatch } from "react-redux";
 import { addToBasket } from "@/slices/basketSlice";
 
-const ProductDetails = (product, { price }) => {
-  // const dispatch = useDispatch();
+const ProductDetails = (product, { price, image, name }) => {
+  const dispatch = useDispatch();
   const addToCart = product.addToCart;
   const p = product.product[0];
   const addItemToBasket = () => {
     const product = {
       p,
     };
-    dispatchEvent(addToBasket(product));
+    dispatch(addToBasket(product));
   };
 
   return (

@@ -26,6 +26,7 @@
     "eslint-config-next": "13.4.19",
     "js-cookie": "^3.0.5",
     "next": "13.4.19",
+    "next-auth": "^4.24.5",
     "next-sanity": "^5.4.6",
     "next-sanity-image": "^6.1.0",
     "postcss": "8.4.29",
