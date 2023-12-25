@@ -8,6 +8,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import { selectItems } from "@/slices/basketSlice";
 import Image from "next/image";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 import Link from "next/link";
@@ -21,6 +22,7 @@ function Header() {
   const [toggle, setToggle] = useState(false);
   const items = useSelector(selectItems);
   const router = useRouter();
+  const { data: session, status } = useSession();
 
   return (
     <div className=" flex  sm:flex-row py-3 max-w-screen sticky top-0    md:px-[2%] px-[8%] bg-white font-bold  z-10  tracking-[2px]">
@@ -109,22 +111,40 @@ function Header() {
         <div className="md:flex">
           <div className="md:flex gap-5  hidden px-2">
             {/* <button className="mx-2 px-3 py-1 shadow-sm rounded-md text-white bg-pink-400 text-sm hover:bg-cyan-400 transition ">Explore</button> */}
-            <a className="pr-4 " href="/favourite">
+            <div
+              className="pr-4 cursor-pointer"
+              onClick={() => router.push("/favourite")}
+            >
               <BookmarkBorderOutlinedIcon />
-            </a>
-            <a className="px-4" onClick={() => router.push("/cart")}>
-              <span className="absolute top-0 ri md:right-10 h-4 w-4 bg-yellow-400 text-center rounded-full">
+            </div>
+            <div
+              className="px-4 cursor-pointer"
+              onClick={() => router.push("/cart")}
+            >
+              <span className="absolute bg-black text-white top-1  h-4 w-4 text-xs bold text-white bg-rose-600  items-center justify-center rounded-full  text-center ">
                 {items.length}
               </span>
               <ShoppingBagOutlinedIcon />
-            </a>
+            </div>
           </div>
-          <a href="">
-            <span className="uppercase font-kanit text-[8px] font-extrabold mr-4  hidden md:inline-flex">
-              grandiose
+          <div className="cursor-pointer" onClick={!session ? signIn : signOut}>
+            <span className="uppercase font-Cursive capitalize text-[20px] font-extrabold   hidden md:inline-flex">
+              {session ? `${session.user.name}` : "sign in"}
             </span>
-            <PersonOutlineOutlinedIcon />
-          </a>
+            {/* <span className="uppercase font-kanit text-[10px] font-extrabold mr-4  hidden md:inline-flex">
+              Sign In
+            </span> */}
+          </div>
+          <div className="pl-4 cursor-pointer">
+            {session ? (
+              <img
+                src={session.user.image}
+                className="h-8 w-8 object-contain rounded-xl"
+              />
+            ) : (
+              <PersonOutlineOutlinedIcon />
+            )}
+          </div>
         </div>
       </div>
     </div>

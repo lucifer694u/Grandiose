@@ -14,11 +14,15 @@ const ProductDetails = (product, { price, image, name }) => {
   const dispatch = useDispatch();
   const addToCart = product.addToCart;
   const p = product.product[0];
+
   const addItemToBasket = () => {
-    const product = {
-      p,
+    const productToAdd = {
+      image: p.image,
+      name: p.name,
+      price: p.price,
+      // details: p.details,
     };
-    dispatch(addToBasket(product));
+    dispatch(addToBasket(productToAdd));
   };
 
   return (
