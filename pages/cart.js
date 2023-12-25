@@ -6,7 +6,7 @@ import { createContext } from "react";
 import { useState } from "react";
 import { selectItems } from "@/slices/basketSlice";
 import { selectTotal } from "@/slices/basketSlice";
-import CurrencyFormat from "react-currency-format";
+// import CurrencyFormat from "react-currency-format";
 
 import { useSelector } from "react-redux";
 import { useSession } from "next-auth/react";
@@ -14,10 +14,9 @@ import { useSession } from "next-auth/react";
 // ! creating context
 // export const CartContext = createContext();
 
-const cartitem = ({ cart }) => {
+const CartItemComponent = ({ cart }) => {
   const items = useSelector(selectItems);
-  const p = items[0];
-  console.log();
+
   const total = useSelector(selectTotal);
 
   const { data: session, status } = useSession();
@@ -99,4 +98,4 @@ const cartitem = ({ cart }) => {
   );
 };
 
-export default cartitem;
+export default CartItemComponent;
