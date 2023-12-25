@@ -90,8 +90,8 @@ function Header() {
           {/* <Search /> */}
           <div className="flex flex-row justify-evenly font-kanit text-[8px] tracking-[3px] font-extrabold">
             <div
-              className="group text-black transition-all duration-300 ease-in-out"
-              href="/category/select"
+              className="group text-black transition-all duration-300 ease-in-out cursor-pointer"
+              onClick={() => handleMobileMenuClick("/category/select")}
             >
               <span className="bg-left-bottom bg-gradient-to-r from-black to-black bg-[length:0%_1px] bg-no-repeat group-hover:bg-[length:100%_1px] transition-all duration-500 ease-out pb-0.5">
                 WATCHES
