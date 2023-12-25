@@ -23,6 +23,10 @@ function Header() {
   const items = useSelector(selectItems);
   const router = useRouter();
   const { data: session, status } = useSession();
+  const handleMobileMenuClick = (path) => {
+    setToggle(false); // Close the mobile menu
+    router.push(path); // Navigate to the specified path
+  };
 
   return (
     <div className=" flex  sm:flex-row py-3 max-w-screen sticky top-0    md:px-[2%] px-[8%] bg-white font-bold  z-10  tracking-[2px]">
@@ -42,12 +46,12 @@ function Header() {
           }
         >
           <div className="flex flex-col font-kanit  tracking-[3px] text-lg py-[200px] px-[5%] space-y-5">
-            <a
-              className="group text-black transition-all duration-300 ease-in-out"
-              href="/category/select"
+            <span
+              className="group text-black transition-all duration-300 ease-in-out cursor-pointer"
+              onClick={() => handleMobileMenuClick("/category/select")}
             >
               WATCHES
-            </a>{" "}
+            </span>{" "}
             <a
               className="group text-black transition-all duration-300 ease-in-out"
               href=""
@@ -67,7 +71,10 @@ function Header() {
         </ul>
 
         <Link href="/">
-          <div className="text-center">
+          <div
+            className="text-center"
+            onClick={() => handleMobileMenuClick("/")}
+          >
             <Image
               onClick={() => router.push("/")}
               src={king}
@@ -82,14 +89,14 @@ function Header() {
         <div className="hidden  sm:block sm:w-1/3 relative">
           {/* <Search /> */}
           <div className="flex flex-row justify-evenly font-kanit text-[8px] tracking-[3px] font-extrabold">
-            <a
+            <div
               className="group text-black transition-all duration-300 ease-in-out"
               href="/category/select"
             >
               <span className="bg-left-bottom bg-gradient-to-r from-black to-black bg-[length:0%_1px] bg-no-repeat group-hover:bg-[length:100%_1px] transition-all duration-500 ease-out pb-0.5">
                 WATCHES
               </span>
-            </a>{" "}
+            </div>{" "}
             <a
               className="group text-black transition-all duration-300 ease-in-out"
               href=""
