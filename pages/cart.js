@@ -69,12 +69,7 @@ const cartitem = ({ cart }) => {
 
                   <p className="text-lg">
                     {" "}
-                    <CurrencyFormat
-                      value={total}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                      prefix={"INR "}
-                    />
+                    <h1>{total}</h1>
                   </p>
                 </div>
                 <h2 className="whitespace-nowrap">
